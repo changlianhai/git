@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+svn / git
+作用：在多人协作开发过程中，我们使用git负责项目源代码的版本管理，所有的开发人员操作的是同一个仓库中的源码
+ 一：基本配置
+   1.下载对应系统的git软件(https://git-scm.com/download)
+   2.配置git环境变量：  桌面"计算机"右击-->>属性--->>高级系统设置-->>环境变量--->>新建--->>输入变量名 Paht 变量值：C:\Program Files/Git/bin(对应的bin文件路径)
+   3.全局配置git用户名和密码(github上的项目)：
+       $ git config --global user.name "github's Name"
+       $ git config --global user.email "github@xx.com"
+       $ git config --global user.ui true  配置颜色
+       $ git config --list查看当前配置, 在当前项目下面查看的配置是全局配置+当前项目的配置, 使用的时候会优先使用当前项目的配置
+    注意： 如果是gitlab上的项目，配置时候需要针对公司的项目, 在项目根目录下进行单独配置
+       $ git config user.name "gitlab's Name"
+       $ git config user.email "gitlab@xx.com"
+
+  二：命令行：
+    1.git工作的三个区、
+         1、工作区（working directory）
+         2、暂缓区（stage/index）
+         3、历史记录区(本地仓库)（history/Repository）
+         4、Remote(远程仓库)
+    2.新建代码库：
+       A:
+        $ git init           在当前目录新建一个Git代码库
+        $ git init fileName  新建一个目录，将其初始化为Git代码库
+        $ git clone url      克隆远程仓库到本地仓库
+
+      B: 和远程仓库关联：
+         $ git remote -v   查看本地仓库和远程仓库关联信息
+         $ git remote add [name] [url]  关联远程仓库
+         $ git remote rm [name]   取消和远程仓库关联
+         $ git pull [remoteName] [localBranchName]  拉取远程仓库代码到工作区
+         $ git push [remoteName] [localBranchName]  历史区代码推送到远程仓库
+
+     C:代码提交流程
+        $ git add -A   工作区代码提交到暂存区   -A提交所以变化文件
+        $ git add 文件名  提交某个文件到暂存区
+
+        $ git commit -m"备注"   暂存区码提交到历史区
+        $ git pull 名称 mast/分支名称 远程仓库代码拉取到历史区
+        $ git push 名称 mast/分支名称  历史区代码提交到远程仓库
+
+     D:分支问题：
+        $ git branch 查看本地分支
+        $ git branch -r 查看远程仓库分支
+
+        $ git branch 分支名称   创建本地分支
+        $ git checkout 分支名称  切换分支
+        ----git add -A  / git commit -m"备注" /  git pull  远程仓库名 刚刚创建的分支名  / git push 远程仓库名 刚刚创建的分支名
+        $ git checkout -b 分支名称 创建完分支里面切换到这个分支
+
+        $ git branch -d [name] 删除分支 d选项只能删除已经参与了合并的分支，对于未有合并的分支是无法删除的。如果想强制删除一个分支，可以使用-D选项
+        $ git merge [name]     合并分支 将名称为[name]的分支与当前分支合并
+
+       $ git push origin :heads/[name] 或 $ git push origin :[name]   删除远程分支
+
+    E:分支合并
+
+    F：冲突解决
+
+
+
+    案例：
+      $ git init  初始化本地仓库
+      $ git clone https://github.com/changlianhai/node.git   克隆远程仓库代码到本地仓库
+      $ git remote add node https://github.com/changlianhai/node.git  和远程仓库关联
+      $ git remote rm node   取消和远程仓库关联
+      $ git remote add node https://github.com/changlianhai/node.git 和远程仓库关联再次
+
+      $ git add -A
+      $ git commit -m "备注"
+      $ git pull node master
+      $ git push node master
+
+
+      $ git branch
+     创建分支vue
+      $ git branch vue
+      $ git checkout vue
+
+     加入文件
+      $ git add -A
+      $ git status
+      $ git commit -m"备注"
+      $ git pull origin master    ---->> 主分支代码拉倒当前分支
+      $ git pull origin vue
+
+   创建分支vue
+     $ git branch react
+     $ git checkout react
+     加入文件
+     $ git status
+     $ git commit -m""
+     $ git status
+     $ git pull origin master
+     $ git push origin react
+
+
+
+
+
+
+
+</body>
+</html>
